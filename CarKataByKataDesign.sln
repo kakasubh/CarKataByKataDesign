@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarKataByKataDesign", "CarKataByKataDesign\CarKataByKataDesign.csproj", "{FFC45DF5-9D6C-40E5-87CB-07A2701933CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarKataByKataDesign.Test", "CarKataByKataDesign.Test\CarKataByKataDesign.Test.csproj", "{E5EEC576-E053-4768-A81C-8C0BC6AA247D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFC45DF5-9D6C-40E5-87CB-07A2701933CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFC45DF5-9D6C-40E5-87CB-07A2701933CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFC45DF5-9D6C-40E5-87CB-07A2701933CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFC45DF5-9D6C-40E5-87CB-07A2701933CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5EEC576-E053-4768-A81C-8C0BC6AA247D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5EEC576-E053-4768-A81C-8C0BC6AA247D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5EEC576-E053-4768-A81C-8C0BC6AA247D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5EEC576-E053-4768-A81C-8C0BC6AA247D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D9B5B7AE-9C24-461F-9A24-504F67B7A9C1}
+	EndGlobalSection
+EndGlobal
