@@ -2,27 +2,58 @@
 using System.Collections.Generic;
 using System.Text;
 using CarKataByKataDesign.Contracts;
+using FluentAssertions;
 using Xunit;
 
 namespace CarKataByKataDesign.Test
 {
     public class FuelTest
     {
-        Fuel fuel = new Fuel();
+        readonly Fuel _fuel = new Fuel();
+
+        [Theory]
+        [InlineData(20, 40)]
+        [InlineData(10, 30)]
+        public void ReFuel_Test(int input, double expectedOutPut)
+        {
+
+            //Arrange
+            _fuel.ReFuel(20);
+
+            double result = _fuel.CurrentFuel;
 
 
+            // Assert
+
+            result.Should().Be(expectedOutPut);
+        }
         [Fact]
         public void GetFuelDetails_Test()
         {
-            //Apply
+            //Arrange
             double expected = 20;
 
             //Act
-            double result = fuel.GetFuelDetails();
+            double result = _fuel.GetFuelDetails();
 
             //Assert
 
             Assert.Equal(expected, result);
+
+        }
+
+        [Fact]
+        public void GetFuelDetails_Test_NegativeTest()
+        {
+            //Arrange
+            double value = 10;
+
+            //Act
+            double result = _fuel.GetFuelDetails();
+
+            //Assert
+
+            Assert.NotEqual(value, result);
 
         }
 
@@ -30,13 +61,13 @@ namespace CarKataByKataDesign.Test
         [Fact]
         public void Reserve_Test()
         {
-            //Apply
+            //Arrange
             bool expected = true;
 
             //Act
-            fuel.Reserve();
+            _fuel.Reserve();
 
-            bool result = fuel.IsReserve;
+            bool result = _fuel.IsReserve;
 
             //Assert
 
@@ -44,20 +75,37 @@ namespace CarKataByKataDesign.Test
         }
 
         [Fact]
-        public void ReFuel_Test()
+        public void Reserve_Test_NegativeTest()
         {
-            //Apply
-            double expected = 40;
+            //Arrange
+            bool value = false;
 
             //Act
-            fuel.ReFuel(20);
+            _fuel.Reserve();
 
-            double result = fuel.currentFuel;
+            bool result = _fuel.IsReserve;
+
+            //Assert
+
+            Assert.NotEqual(value, result);
+        }
+       
+
+        [Fact]
+        public void ReFuel_Test_NegativeTest()
+        {
+            //Arrange
+            double value = 20;
+
+            //Act
+            _fuel.ReFuel(20);
+
+            double result = _fuel.CurrentFuel;
 
 
             // Assert
 
-            Assert.Equal(expected, result);
+            Assert.NotEqual(value, result);
         }
 
         [Fact]
@@ -67,12 +115,30 @@ namespace CarKataByKataDesign.Test
             double expected = 10;
 
             //Act
-            fuel.ConsumeFuel(10);
-            double result = fuel.currentFuel;
+            _fuel.ConsumeFuel(10);
+            double result = _fuel.CurrentFuel;
 
 
             //Assert
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void ConsumeFuel_Test_NegativeTest()
+        {
+            //Act
+            double value = 15;
+
+            //Act
+            _fuel.ConsumeFuel(10);
+            double result = _fuel.CurrentFuel;
+
+
+            //Assert
+            Assert.NotEqual(value, result);
+        }
+
+
+        
     }
 }

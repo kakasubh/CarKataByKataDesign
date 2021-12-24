@@ -6,7 +6,7 @@ namespace CarKataByKataDesign.Contracts
 {
     public  interface IFuel
     {
-        double currentFuel { get; }
+        double CurrentFuel { get; }
         bool IsReserve { get; }
         public double GetFuelDetails();
 

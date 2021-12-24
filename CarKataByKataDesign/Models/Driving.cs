@@ -6,10 +6,11 @@ namespace CarKataByKataDesign.Contracts
 {
     public class Driving: IDriving
     {
-        private int _LiveSpeed = 20;
+        //remove speed
+        private int _liveSpeed =0;
         //private ICar _car;
-        private IFuel _fuel;
-        private IEngine _engine;
+        private readonly IFuel _fuel;
+        private readonly IEngine _engine;
 
         public Driving(IEngine engine, IFuel fuel)
         {
@@ -21,13 +22,19 @@ namespace CarKataByKataDesign.Contracts
         {
             get
             {
-                return _LiveSpeed;
+                return _liveSpeed;
             }
         }
 
-        public void BrakeBy(int Speed)
+        public void BrakeBy(int speed)
         {
-            if (_fuel.currentFuel <= 0)
+            if (speed > 10)
+            {
+                Console.WriteLine("The speed cannot be more that 10 kilometers per hour.");
+                return;
+            }
+
+            if (_fuel.CurrentFuel <= 0)
             {
                 Console.WriteLine("There is no fuel in the tank. Please hit enter and then press 5 to Refuel.");
                 return;
@@ -35,15 +42,20 @@ namespace CarKataByKataDesign.Contracts
             }
             if (_engine.IsEngineRunning)
             {
-                if (Speed < LiveSpeed)
+                if (speed < LiveSpeed)
                 {
-                    _LiveSpeed = LiveSpeed - Speed;
+                    _liveSpeed = LiveSpeed - speed;
+                }
+                else
+                {
+                    _liveSpeed = 0;
+
                 }
             }
 
             if (LiveSpeed == 0 && _engine.IsEngineRunning)
             {
-                _fuel.ConsumeFuel(-0.12);
+                _fuel.ConsumeFuel(-0.0003);
             }
             if (LiveSpeed <= 60)
             {
@@ -80,13 +92,18 @@ namespace CarKataByKataDesign.Contracts
 
         public void Stop()
         {
-            _LiveSpeed = 0;
+            _liveSpeed = 0;
         }
 
-        public void Accelerate(int Speed = 10)
+        public void Accelerate(int speed)
         {
+            if (speed > 10)
+            {
+                Console.WriteLine("The speed cannot be more that 10 kilometers per hour.");
+                return;
+            }
 
-            if (_fuel.currentFuel <= 0)
+            if (_fuel.CurrentFuel <= 0)
             {
                 Console.WriteLine("There is no fuel in the tank. Please hit enter and then press 5 to Refuel.");
                 return;
@@ -98,17 +115,12 @@ namespace CarKataByKataDesign.Contracts
                 Console.WriteLine("Engine is not running. Please execute again and select option 1 to start the engine and select 4 to accelerate.");
                 return;
             }
-            if (_fuel.currentFuel <= 0)
-            {
-                Console.WriteLine("There is no fuel in the tank. Please hit enter and then press 5 to Refuel.");
-                return;
-
-            }
+           
            
 
             if (_engine.IsEngineRunning)
             {
-                _LiveSpeed = LiveSpeed + Speed;
+                _liveSpeed = LiveSpeed + speed;
             }
 
             if (LiveSpeed >= 250)

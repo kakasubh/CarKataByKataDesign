@@ -11,6 +11,7 @@ namespace CarKataByKataDesign
         private readonly IFuel _fuel;
         private readonly IFuelDisplay _fuelDisplay;
 
+        // Constructor injections. Dependecies are resolved in startup class
         public EntryPoint(ICar car, ICarDashboard carDashboard, IDriving driving, IFuelDisplay fuelDisplay, IFuel fuel)
         {
             _car = car;
@@ -21,11 +22,6 @@ namespace CarKataByKataDesign
         }
         public void Run(String[] args)
         {
-            //var carDashboard = new CarDashboard();
-            //var fuelDisplay = new FuelDisplay();
-            //var car = serviceProvider.GetService<ICar>();
-            //var driving = new Driving();
-            //var fuel = new Fuel();
             try
             {
                 do
@@ -53,14 +49,37 @@ namespace CarKataByKataDesign
 
                         case 3:
                             {
-                                _driving.BrakeBy(10);
+                                Console.WriteLine("Enter the speed by which you would like to brake.");
+                                var speed = Console.ReadLine();
+
+                                if (int.TryParse(speed, out int speedOutPut))
+                                {
+                                    _driving.BrakeBy(speedOutPut);
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"{speed} is not a number");
+                                }
+                               
                                 _fuelDisplay.FuelDetails();
                                 break;
 
                             }
                         case 4:
                             {
-                                _driving.Accelerate(10);
+                                Console.WriteLine("Enter the speed by which you would like to accelerate.");
+                                var speed = Console.ReadLine();
+
+                                if (int.TryParse(speed, out int speedOutPut))
+                                {
+                                    _driving.Accelerate(speedOutPut);
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"{speed} is not a number");
+                                }
+                               
+                               
                                 _fuelDisplay.FuelDetails();
                                 break;
 
@@ -88,10 +107,10 @@ namespace CarKataByKataDesign
             {
                 if (exception.Message == "Input string was not in a correct format.")
                 {
-                    Console.WriteLine("Strings and special characters are not allowed. Please enter integer between 1 and 5");
+                    Console.WriteLine("Strings and special characters are not allowed. Please enter only numbers from 1 to 5");
                 }
 
-
+                Console.WriteLine(exception.Message);
 
             }
         }

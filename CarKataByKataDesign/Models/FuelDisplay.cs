@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace CarKataByKataDesign.Contracts
 {
@@ -17,8 +18,10 @@ namespace CarKataByKataDesign.Contracts
         }
         public void FuelDetails()
         {
-           
-            Console.WriteLine("Current Fuel {0}, {1}", Math.Round(_fuel.GetFuelDetails(), 2), (_fuel.IsReserve) ? "is running in reserve" : "not in reserve");
+            Double fuel = _fuel.GetFuelDetails();
+
+            string fuelDisplay = $"{fuel:0.00}";
+            Console.WriteLine("Current Fuel {0}, {1}", fuelDisplay, (_fuel.IsReserve) ? "is running in reserve" : "not in reserve");
 
 
             Console.WriteLine("Current Speed {0}", _car.GetCurrentSpeed());

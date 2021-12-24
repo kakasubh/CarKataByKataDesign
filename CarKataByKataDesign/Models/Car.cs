@@ -7,30 +7,30 @@ namespace CarKataByKataDesign.Contracts
 {
     public class Car : ICar
     {
-        public IDriving _driving;
-        public IFuel _fuel;
-        public IEngine _engine;
+        public IDriving Driving;
+        public IFuel Fuel;
+        public IEngine Engine;
         public  int CurrentTemperature = 30;
-        private bool _IsRunning = false;
+        private bool _isRunning = false;
 
         public Car(IDriving driving, IFuel fuel, IEngine engine)
         {
-            _driving = driving;
-            _fuel = fuel;
-            _engine = engine;
+            Driving = driving;
+            Fuel = fuel;
+            Engine = engine;
         }
         public bool IsRunning
         {
             get
             {
-                return _IsRunning;
+                return _isRunning;
             }
         }
 
         public int GetCurrentSpeed()
         {
             
-            return _driving.LiveSpeed;
+            return Driving.LiveSpeed;
         }
 
         public int GetTemperature()
@@ -41,24 +41,24 @@ namespace CarKataByKataDesign.Contracts
         public void StartCar()
         {
             
-            if (_IsRunning == true)
+            if (_isRunning == true)
             {
                 Console.WriteLine("Engine is already running. Please press any other option to proceed.");
                 return;
             }
-            if (_fuel.currentFuel <= 0)
+            if (Fuel.CurrentFuel <= 0)
             {
                 Console.WriteLine("There is no fuel in the tank. Please hit enter and then press 5 to Refuel.");
                 return;
             }
-            _IsRunning = true;
-            _engine.StartEngine();
+            _isRunning = true;
+            Engine.StartEngine();
             Console.WriteLine("Engine started.");
             
 
-            if (_fuel.currentFuel <= 5)
+            if (Fuel.CurrentFuel <= 5)
             {
-                _fuel.Reserve();
+                Fuel.Reserve();
             }
 
             return;
@@ -67,15 +67,15 @@ namespace CarKataByKataDesign.Contracts
 
         public void StopCar()
         {
-            if (_IsRunning == false)
+            if (_isRunning == false)
             {
                 Console.WriteLine("Engine is not running. Please execute again and select option 1 to start the engine");
                 return;
             }
 
-            _IsRunning = false;
-            _driving.Stop();
-            _engine.StopEngine();
+            _isRunning = false;
+            Driving.Stop();
+            Engine.StopEngine();
             
 
             Console.WriteLine("Car is stopped.");

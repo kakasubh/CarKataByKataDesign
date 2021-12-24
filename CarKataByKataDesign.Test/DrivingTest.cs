@@ -20,7 +20,7 @@ namespace CarKataByKataDesign.Test
 
             Driving driving = new Driving(mockDriving.Object, mockFuel.Object);
 
-            driving.Accelerate();
+            driving.Accelerate(10);
 
 
         }
@@ -33,7 +33,7 @@ namespace CarKataByKataDesign.Test
 
             Driving driving = new Driving(mockDriving.Object, mockFuel.Object);
 
-            driving.Accelerate();
+            driving.Accelerate(10);
 
 
         }

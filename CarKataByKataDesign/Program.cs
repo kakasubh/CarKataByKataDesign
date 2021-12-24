@@ -7,19 +7,19 @@ namespace CarKataByKataDesign
     {
         static void Main(string[] args)
         {
-            //var serviceProvider = new ServiceCollection()
-            //    .AddSingleton<ICar, Car>()
-            //    .AddSingleton<IFuel, Fuel>()
-            //    .AddSingleton<IEngine, Engine>()
-            //    .AddSingleton<IDriving,Driving>()
-            //    .AddSingleton<ICarDashboard, CarDashboard>()
-            //    .AddSingleton<IFuelDisplay,FuelDisplay>()
-            //    .BuildServiceProvider();
 
-            var services = Startup.ConfigureServices();
-            var serviceProvider = services.BuildServiceProvider();
+            try
+            {
+                var services = Startup.ConfigureServices();
+                var serviceProvider = services.BuildServiceProvider();
 
-            serviceProvider.GetService<EntryPoint>().Run(args);
+                // Below call will Run method of EntryPoint class to make subsequent calls into the application
+                serviceProvider.GetService<EntryPoint>().Run(args);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
 
            
     }

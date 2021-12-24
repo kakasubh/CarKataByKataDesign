@@ -7,11 +7,11 @@ namespace CarKataByKataDesign.Contracts
     public class Fuel: IFuel
     {
         private  double _currentFuel = 20;
-        private bool _IsReserve = false;
+        private bool _isReserve = false;
 
         
 
-        public double currentFuel
+        public double CurrentFuel
         {
             get
             {
@@ -23,42 +23,50 @@ namespace CarKataByKataDesign.Contracts
         {
             get
             {
-                return _IsReserve;
+                return _isReserve;
             }
         }
 
         public double GetFuelDetails()
         {
-            return currentFuel;
+            return CurrentFuel;
         }
 
         public void Reserve()
         {
-            _IsReserve = true;
+            _isReserve = true;
         }
 
         public void ReFuel(int fuel)
         {
-            if (currentFuel + fuel > 60)
+            try
             {
-                Console.WriteLine("Maximum capacity is 60 liters. Current volume is already {0}. Please enter the valid input.", currentFuel);
-                return;
-            }
+                if (CurrentFuel + fuel > 60)
+                {
+                    Console.WriteLine(
+                        "Maximum capacity is 60 liters. Current volume is already {0}. Please enter the valid input.",
+                        CurrentFuel);
+                    return;
+                }
 
-            if (currentFuel > 60)
+                if (CurrentFuel > 60)
+                {
+                    Console.WriteLine("Maximum capacity of 60 liters reached");
+
+                }
+
+
+                _currentFuel += fuel;
+            }
+            catch (ArgumentException exception)
             {
-                Console.WriteLine("Maximum capacity of 60 liters reached");
-
+                Console.WriteLine(exception.Message);
             }
-
-
-            _currentFuel += fuel;
         }
 
         public void ConsumeFuel(double value)
         {
             _currentFuel -= value;
-            Math.Round(_currentFuel, 10);
         }
     }
 }

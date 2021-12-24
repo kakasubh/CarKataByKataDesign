@@ -14,7 +14,7 @@ namespace CarKataByKataDesign.Test
         [Fact]
         public void StartEngine_Test()
         {
-            // Apply 
+            // Arrange 
 
             bool expected = true;
 
@@ -34,7 +34,7 @@ namespace CarKataByKataDesign.Test
         [Fact]
         public void StopEngine_Test()
         {
-            // Apply 
+            // Arrange 
 
             bool expected = false;
 
