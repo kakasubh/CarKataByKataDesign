@@ -18,7 +18,7 @@ namespace CarKataByKataDesign.Test
         {
 
             //Arrange
-            _fuel.ReFuel(20);
+            _fuel.ReFuel(input);
 
             double result = _fuel.CurrentFuel;
 
