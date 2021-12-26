@@ -28,6 +28,11 @@ namespace CarKataByKataDesign.Contracts
 
         public void BrakeBy(int speed)
         {
+            if (speed < 0)
+            {
+                Console.WriteLine("Speed input cannot be less than zero.");
+                return;
+            }
             if (speed > 10)
             {
                 Console.WriteLine("The speed cannot be more that 10 kilometers per hour.");
@@ -97,9 +102,15 @@ namespace CarKataByKataDesign.Contracts
 
         public void Accelerate(int speed)
         {
+            if (speed < 0)
+            {
+                Console.WriteLine("Speed input cannot be less than zero.");
+                return;
+            }
+
             if (speed > 10)
             {
-                Console.WriteLine("The speed cannot be more that 10 kilometers per hour.");
+                Console.WriteLine("At a time speed cannot be increased by more than 10 kilometers per hour.");
                 return;
             }
 
@@ -107,7 +118,6 @@ namespace CarKataByKataDesign.Contracts
             {
                 Console.WriteLine("There is no fuel in the tank. Please hit enter and then press 5 to Refuel.");
                 return;
-
             }
 
             if (_engine.IsEngineRunning == false)

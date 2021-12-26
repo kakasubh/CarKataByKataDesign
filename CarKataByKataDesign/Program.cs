@@ -20,8 +20,6 @@ namespace CarKataByKataDesign
             {
                 Console.WriteLine(ex.Message.ToString());
             }
-
-           
-    }
+        }
     }
 }

@@ -8,9 +8,6 @@ namespace CarKataByKataDesign
     {
         public static IServiceCollection ConfigureServices()
         {
-            try
-            {
-
                 var services = new ServiceCollection();
 
                 // Resolving dependent classes against their contracts using dependency injection of microsoft extensions
@@ -21,18 +18,9 @@ namespace CarKataByKataDesign
                 services.AddSingleton<IFuel, Fuel>();
                 services.AddSingleton<IEngine, Engine>();
                 services.AddSingleton<IDriving, Driving>();
-                services.AddSingleton<ICarDashboard, CarDashboard>();
-                services.AddSingleton<IFuelDisplay, FuelDisplay>();
 
                 return services;
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message.ToString());
-                throw;
-            }
-
-        }
 
     }
 }

@@ -60,24 +60,19 @@ namespace CarKataByKataDesign.Contracts
             {
                 Fuel.Reserve();
             }
-
             return;
-
         }
 
         public void StopCar()
         {
             if (_isRunning == false)
             {
-                Console.WriteLine("Engine is not running. Please execute again and select option 1 to start the engine");
+                Console.WriteLine("Engine is not running. Please select option 1 to start the engine");
                 return;
             }
-
             _isRunning = false;
             Driving.Stop();
             Engine.StopEngine();
-            
-
             Console.WriteLine("Car is stopped.");
         }
     }

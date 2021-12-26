@@ -126,7 +126,7 @@ namespace CarKataByKataDesign.Test
         [Fact]
         public void ConsumeFuel_Test_NegativeTest()
         {
-            //Act
+            //Arrange
             double value = 15;
 
             //Act
@@ -137,8 +137,5 @@ namespace CarKataByKataDesign.Test
             //Assert
             Assert.NotEqual(value, result);
         }
-
-
-        
     }
 }

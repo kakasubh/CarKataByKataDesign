@@ -9,18 +9,28 @@ namespace CarKataByKataDesign.Test
 {
     public class DrivingTest
     {
-        Mock<IEngine> mockDriving = new Mock<IEngine>();
+        Mock<IEngine> mockEngine = new Mock<IEngine>();
         Mock<IFuel> mockFuel = new Mock<IFuel>();
 
-        [Fact]
-        public void Accelerate_Test()
+
+        [Theory]
+        [InlineData(5, 5)]
+        [InlineData(10, 10)]
+
+        public void Accelerate_Test(int input, double result)
         {
 
             mockFuel.Setup(x => x.GetFuelDetails()).Returns(20);
 
-            Driving driving = new Driving(mockDriving.Object, mockFuel.Object);
+            mockEngine.SetupGet(x => x.IsEngineRunning).Returns(true);
 
-            driving.Accelerate(10);
+            mockFuel.SetupGet(x => x.CurrentFuel).Returns(20);
+
+            Driving driving = new Driving(mockEngine.Object, mockFuel.Object);
+
+            driving.Accelerate(input);
+
+            Assert.Equal(result, driving.LiveSpeed);
 
 
         }
@@ -29,11 +39,13 @@ namespace CarKataByKataDesign.Test
         public void BrakeBy_Test()
         {
 
-            mockFuel.Setup(x => x.GetFuelDetails()).Returns(20);
+            mockEngine.SetupGet(x => x.IsEngineRunning).Returns(true);
 
-            Driving driving = new Driving(mockDriving.Object, mockFuel.Object);
+            mockFuel.SetupGet(x => x.CurrentFuel).Returns(20);
 
-            driving.Accelerate(10);
+            Driving driving = new Driving(mockEngine.Object, mockFuel.Object);
+
+            driving.BrakeBy(10);
 
 
         }
@@ -41,11 +53,17 @@ namespace CarKataByKataDesign.Test
         [Fact]
         public void Stop_Test()
         {
-            mockFuel.Setup(x => x.GetFuelDetails()).Returns(20);
+            //Arrange
 
-            Driving driving = new Driving(mockDriving.Object, mockFuel.Object);
+            int expected = 0;
+
+            mockFuel.SetupGet(x => x.CurrentFuel).Returns(0);
+
+            Driving driving = new Driving(mockEngine.Object, mockFuel.Object);
 
             driving.Stop();
+
+            Assert.Equal(expected, driving.LiveSpeed);
 
         }
 

@@ -16,7 +16,22 @@ namespace CarKataByKataDesign.Test
 
         Mock<IEngine> mockEngine = new Mock<IEngine>();
 
+        [Theory]
+        [InlineData(10, true)]
+        [InlineData(0, false)]
+        public void StartCar_Test(int fuelLevel, bool isRunning)
+        {
+            //Arrange
+            mockFuel.SetupGet(x => x.CurrentFuel).Returns(fuelLevel);
 
+            //Act
+            Car car = new Car(mockDriving.Object, mockFuel.Object, mockEngine.Object);
+            car.StartCar();
+
+            //Assert
+            Assert.Equal(isRunning, car.IsRunning);
+        }
+       
        
         [Fact]
         public void GetCurrentTemperature_Test()
@@ -34,51 +49,50 @@ namespace CarKataByKataDesign.Test
         }
 
         [Fact]
-        public void StartCar_Test()
-        {
-
-                Car car = new Car(mockDriving.Object, mockFuel.Object, mockEngine.Object);
-                bool isEngineRunning = true;
-
-                car.StartCar();
-
-              //  mockEngine.Setup(x => x._IsEngineRunning).Returns(true);
-
-                bool result = true;
-
-                Assert.Equal(isEngineRunning,result);
-        }
-
-
-        [Fact]
         public void StopCar_Test()
         {
+            //Arrange
+            bool expected = false;
 
+            //Act
             Car car = new Car(mockDriving.Object, mockFuel.Object, mockEngine.Object);
-            bool isEngineRunning = false;
+            car.StopCar();
+            
 
-            car.StartCar();
+            //Assert
+            Assert.Equal(expected, car.IsRunning);
 
-           //  mockEngine.Setup(x => x._IsEngineRunning).Returns(false);
+        }
 
-            bool result = false;
+        [Fact]
+        public void StopCar_Negative_Test()
+        {
+            //Arrange
+            bool expected = true;
 
-            Assert.Equal(isEngineRunning, result);
+            //Act
+            Car car = new Car(mockDriving.Object, mockFuel.Object, mockEngine.Object);
+            car.StopCar();
+
+
+            //Assert
+            Assert.NotEqual(expected, car.IsRunning);
         }
 
 
-        [Fact]
-        public void GetCurrentSpeed_Test()
+        [Theory]
+        [InlineData(30,30)]
+        [InlineData(50, 50)]
+
+        public void GetCurrentSpeed_Test(int expectedSpeed, int actualSpeed)
+
         {
-            // Arrage 
-            int expectedSpeed = 50;
-
+            
             // Act
-            mockDriving.Setup(x => x.LiveSpeed).Returns(50);
-            int result = 50;
-
+            mockDriving.Setup(x => x.LiveSpeed).Returns(expectedSpeed);
+            
             // Assert
-            Assert.Equal(expectedSpeed, result);
+            Assert.Equal(expectedSpeed, actualSpeed);
         }
     }
 }

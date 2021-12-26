@@ -44,15 +44,13 @@ namespace CarKataByKataDesign.Contracts
                 if (CurrentFuel + fuel > 60)
                 {
                     Console.WriteLine(
-                        "Maximum capacity is 60 liters. Current volume is already {0}. Please enter the valid input.",
-                        CurrentFuel);
+                        $"Maximum capacity is 60 liters. Current volume is already {CurrentFuel}. Please enter the valid input.");
                     return;
                 }
 
                 if (CurrentFuel > 60)
                 {
                     Console.WriteLine("Maximum capacity of 60 liters reached");
-
                 }
 
 

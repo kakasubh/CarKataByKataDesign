@@ -6,28 +6,21 @@ namespace CarKataByKataDesign
     public class EntryPoint
     {
         private readonly ICar _car;
-        private readonly ICarDashboard _carDashboard;
         private readonly IDriving _driving;
         private readonly IFuel _fuel;
-        private readonly IFuelDisplay _fuelDisplay;
+        
 
-        // Constructor injections. Dependecies are resolved in startup class
-        public EntryPoint(ICar car, ICarDashboard carDashboard, IDriving driving, IFuelDisplay fuelDisplay, IFuel fuel)
+        // Constructor injections. Dependencies are resolved in startup class
+        public EntryPoint(ICar car,  IDriving driving, IFuel fuel)
         {
             _car = car;
-            _carDashboard = carDashboard;
             _driving = driving;
             _fuel = fuel;
-            _fuelDisplay = fuelDisplay;
         }
         public void Run(String[] args)
         {
-            try
-            {
-                do
-                {
-
-                    _carDashboard.Display();
+            do {
+                        this.Display();
 
                     int option = Convert.ToInt16(Console.ReadLine());
 
@@ -36,14 +29,14 @@ namespace CarKataByKataDesign
                         case 1:
                             {
                                 _car.StartCar();
-                                _fuelDisplay.FuelDetails();
+                                this.FuelDetails();
                                 break;
                             }
 
                         case 2:
                             {
                                 _car.StopCar();
-                                _fuelDisplay.FuelDetails();
+                                this.FuelDetails();
                                 break;
                             }
 
@@ -52,16 +45,14 @@ namespace CarKataByKataDesign
                                 Console.WriteLine("Enter the speed by which you would like to brake.");
                                 var speed = Console.ReadLine();
 
-                                if (int.TryParse(speed, out int speedOutPut))
-                                {
-                                    _driving.BrakeBy(speedOutPut);
-                                }
-                                else
+                                if (!int.TryParse(speed, out int speedOutPut))
                                 {
                                     Console.WriteLine($"{speed} is not a number");
+                                    this.Display();
                                 }
-                               
-                                _fuelDisplay.FuelDetails();
+                                _driving.BrakeBy(speedOutPut);
+
+                                this.FuelDetails();
                                 break;
 
                             }
@@ -70,49 +61,68 @@ namespace CarKataByKataDesign
                                 Console.WriteLine("Enter the speed by which you would like to accelerate.");
                                 var speed = Console.ReadLine();
 
-                                if (int.TryParse(speed, out int speedOutPut))
-                                {
-                                    _driving.Accelerate(speedOutPut);
-                                }
-                                else
+
+                                if (!int.TryParse(speed, out int speedOutPut))
                                 {
                                     Console.WriteLine($"{speed} is not a number");
+                                    this.Display();
                                 }
-                               
-                               
-                                _fuelDisplay.FuelDetails();
+                                _driving.Accelerate(speedOutPut);
+
+                                this.FuelDetails();
                                 break;
 
                             }
                         case 5:
                             {
-                                Console.WriteLine("How much fuel to be refilled?");
+                                Console.WriteLine("How much fuel would you like to refill?");
                                 int fuelResponse = Convert.ToInt16(Console.ReadLine());
                                 _fuel.ReFuel(fuelResponse);
-                                _fuelDisplay.FuelDetails();
+                                this.FuelDetails();
                                 break;
 
                             }
                         default:
                             {
-                                Console.WriteLine("Please enter integer between 1 and 5.");
+                                Console.WriteLine("Please enter the only the value between 1 and 5.");
 
                                 return;
                             }
-                    }
-                } while (1 == 1);
+                    } } while (1 == 1);
 
-            }
-            catch (Exception exception)
-            {
-                if (exception.Message == "Input string was not in a correct format.")
-                {
-                    Console.WriteLine("Strings and special characters are not allowed. Please enter only numbers from 1 to 5");
-                }
+        }
 
-                Console.WriteLine(exception.Message);
+        public void FuelDetails()
+        {
+            Double fuel = _fuel.GetFuelDetails();
 
-            }
+            string fuelDisplay = $"{fuel:0.00}";
+            Console.WriteLine("Current Fuel {0}, {1}", fuelDisplay, (_fuel.IsReserve) ? "is running in reserve" : "not in reserve");
+
+
+
+            Console.WriteLine("Current Speed {0}", _car.GetCurrentSpeed());
+
+            Console.WriteLine("Current Temperature {0}", _car.GetTemperature());
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
+
+        public void Display()
+        {
+            Console.WriteLine("Enter any of the following values.");
+
+            Console.WriteLine("1. Start Car");
+
+
+            Console.WriteLine("2. Stop Car");
+
+            Console.WriteLine("3. Brake Car");
+
+            Console.WriteLine("4. Accelerate Car");
+
+            Console.WriteLine("5. Refuel");
         }
     }
     
