@@ -1,5 +1,4 @@
-﻿using System;
-using CarKataByKataDesign.Contracts;
+﻿using CarKataByKataDesign.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CarKataByKataDesign

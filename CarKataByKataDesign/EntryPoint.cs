@@ -10,7 +10,7 @@ namespace CarKataByKataDesign
         private readonly IFuel _fuel;
         
 
-        // Constructor injections. Dependencies are resolved in startup class
+        // Constructor injection. Dependencies are resolved in startup class
         public EntryPoint(ICar car,  IDriving driving, IFuel fuel)
         {
             _car = car;
@@ -19,8 +19,8 @@ namespace CarKataByKataDesign
         }
         public void Run(String[] args)
         {
-            do {
-                        this.Display();
+            do { 
+                    this.Display();
 
                     int option = Convert.ToInt16(Console.ReadLine());
 
@@ -47,8 +47,9 @@ namespace CarKataByKataDesign
 
                                 if (!int.TryParse(speed, out int speedOutPut))
                                 {
-                                    Console.WriteLine($"{speed} is not a number");
-                                    this.Display();
+                                    Console.WriteLine($"{speed} is not a number. Please select option 3 and enter the valid input.");
+                                    Console.WriteLine();
+                                    break;
                                 }
                                 _driving.BrakeBy(speedOutPut);
 
@@ -64,8 +65,9 @@ namespace CarKataByKataDesign
 
                                 if (!int.TryParse(speed, out int speedOutPut))
                                 {
-                                    Console.WriteLine($"{speed} is not a number");
-                                    this.Display();
+                                    Console.WriteLine($"{speed} is not a number. Please select option 4 and enter the valid input.");
+                                    Console.WriteLine();
+                                    break;
                                 }
                                 _driving.Accelerate(speedOutPut);
 
@@ -76,17 +78,26 @@ namespace CarKataByKataDesign
                         case 5:
                             {
                                 Console.WriteLine("How much fuel would you like to refill?");
-                                int fuelResponse = Convert.ToInt16(Console.ReadLine());
-                                _fuel.ReFuel(fuelResponse);
+                                var fuelResponse = Console.ReadLine();
+
+                                if (!int.TryParse(fuelResponse, out int fuelOutPut))
+                                {
+                                    Console.WriteLine($"{fuelResponse} is not a number");
+                                    break;
+                                }
+                                _fuel.ReFuel(fuelOutPut);
                                 this.FuelDetails();
                                 break;
 
                             }
                         default:
                             {
+                                Console.WriteLine();
                                 Console.WriteLine("Please enter the only the value between 1 and 5.");
+                                Console.WriteLine();
+                                Console.WriteLine();
 
-                                return;
+                            break;
                             }
                     } } while (1 == 1);
 

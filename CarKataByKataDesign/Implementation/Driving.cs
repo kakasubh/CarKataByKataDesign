@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CarKataByKataDesign.Contracts
 {
@@ -122,7 +120,7 @@ namespace CarKataByKataDesign.Contracts
 
             if (_engine.IsEngineRunning == false)
             {
-                Console.WriteLine("Engine is not running. Please execute again and select option 1 to start the engine and select 4 to accelerate.");
+                Console.WriteLine("Engine is not running. Please select option 1 to start the engine and select 4 to accelerate.");
                 return;
             }
            

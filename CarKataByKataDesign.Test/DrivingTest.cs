@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CarKataByKataDesign.Contracts;
+﻿using CarKataByKataDesign.Contracts;
 using Moq;
 using Xunit;
 

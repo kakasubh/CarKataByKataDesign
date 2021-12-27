@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CarKataByKataDesign.Contracts
 {
@@ -41,10 +39,13 @@ namespace CarKataByKataDesign.Contracts
         {
             try
             {
+
                 if (CurrentFuel + fuel > 60)
                 {
+                    string fuelDisplay = $"{CurrentFuel:0.00}";
+
                     Console.WriteLine(
-                        $"Maximum capacity is 60 liters. Current volume is already {CurrentFuel}. Please enter the valid input.");
+                        $"Maximum capacity is 60 liters. Current volume is already {fuelDisplay}. Please enter the valid input.");
                     return;
                 }
 
