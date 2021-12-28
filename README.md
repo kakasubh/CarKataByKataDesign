@@ -1,3 +1,9 @@
+This is a console application which can be directly executed from visual studio or visual studio code.
+
+developed using .net core 5.0 and xunit for unit testing.
+
+Requirement:
+
 # CarKataByKataDesign
 
 Car Kata
