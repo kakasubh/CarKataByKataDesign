@@ -37,7 +37,7 @@ namespace CarKataByKataDesign.Contracts
 
         public void StartCar()
         {
-            
+
             if (_isRunning == true)
             {
                 Console.WriteLine("Engine is already running. Please press any other option to proceed.");

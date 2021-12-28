@@ -23,6 +23,8 @@ namespace CarKataByKataDesign.Test
 
             //Act
             Car car = new Car(mockDriving.Object, mockFuel.Object, mockEngine.Object);
+
+            mockEngine.Setup(x => x.StartEngine());
             car.StartCar();
 
             //Assert
@@ -53,6 +55,8 @@ namespace CarKataByKataDesign.Test
 
             //Act
             Car car = new Car(mockDriving.Object, mockFuel.Object, mockEngine.Object);
+            mockEngine.Setup(x => x.StopEngine());
+
             car.StopCar();
             
 
